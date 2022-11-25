@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Cash_Register_App</string>
+
+    <string name="app_name_land">Cash_Register_App</string>
+    <string name="cash_register_app_ass2">Cash Register Application</string>
+    <string name="cash_register_app_ass2_land">Cash Register Application</string>
+    <string name="n0">0</string>
+    <string name="n1">1</string>
+    <string name="n2">2</string>
+    <string name="n3">3</string>
+    <string name="n4">4</string>
+    <string name="n5">5</string>
+    <string name="n6">6</string>
+    <string name="n7">7</string>
+    <string name="n8">8</string>
+    <string name="n9">9</string>
+    <string name="clearBut">C</string>
+    <string name="buyBut">Buy</string>
+    <string name="enter_product_type">Enter Product Type</string>
+    <string name="enter_product_type_land">Enter Product Type</string>
+    <string name="enter_quantity">Enter Quantity</string>
+    <string name="enter_quantity_land">Enter Quantity</string>
+    <string name="total">Here is a result</string>
+    <string name="total_land">Here is a result</string>
+
+</resources>

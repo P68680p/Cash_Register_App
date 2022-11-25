@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <dimen name="space10sp">10sp</dimen>
+    <dimen name="space20sp">20sp</dimen>
+    <dimen name="space30sp">30sp</dimen>
+    <dimen name="space10sp_land">10sp</dimen>
+    <dimen name="space20sp_land">20sp</dimen>
+    <dimen name="space30sp_land">30sp</dimen>
+</resources>
