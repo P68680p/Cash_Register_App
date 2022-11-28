@@ -16,8 +16,8 @@
     <string name="n9">9</string>
     <string name="clearBut">C</string>
     <string name="buyBut">Buy</string>
-    <string name="enter_product_type">Enter Product Type</string>
-    <string name="enter_product_type_land">Enter Product Type</string>
+    <string name="enter_product_type">Choose Product</string>
+    <string name="enter_product_type_land">Choose Product</string>
     <string name="enter_quantity">Enter Quantity</string>
     <string name="enter_quantity_land">Enter Quantity</string>
     <string name="total">Here is a result</string>

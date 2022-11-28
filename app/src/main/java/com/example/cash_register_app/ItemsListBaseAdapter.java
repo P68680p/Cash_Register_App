@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 
 public class ItemsListBaseAdapter extends BaseAdapter {
-    //    Store s = new Store();
-    ArrayList<InventoryItem> list = Store.getInventory();
+
+    ArrayList<InventoryItem> list;
     Context context;
 
     ItemsListBaseAdapter(ArrayList<InventoryItem> list, Context context) {
@@ -37,7 +37,7 @@ public class ItemsListBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        System.out.println("inside of public View getView(int i, View view, ViewGroup viewGroup)");
+
         LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = li.inflate(R.layout.list_base_adapter_row, viewGroup, false);
 

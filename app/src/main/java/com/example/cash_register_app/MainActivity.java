@@ -1,27 +1,27 @@
 package com.example.cash_register_app;
 
-
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-//    Store s = new Store(getInventory,history);
+
     String quant = "";
     String prod = "";
     double price;
     int index;
+    ItemsListBaseAdapter adapter;
 
     TextView prodTypeText;
     TextView quantText;
@@ -79,19 +79,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buyBut.setOnClickListener(this);
         manag.setOnClickListener(this);
 
-        ItemsListBaseAdapter adapter = new ItemsListBaseAdapter(Store.getInventory(), this);
+        adapter = new ItemsListBaseAdapter(((MyApp) this.getApplication()).storeObject.getInventory(), this);
         itemsList.setAdapter(adapter);
         itemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this,
-                        "The selected Item is " +
-                                Store.getInventory().get(i).getDescription(), Toast.LENGTH_LONG).show();
-                prodTypeText.setText(Store.getInventory().get(i).getDescription());
-                price = Store.getInventory().get(i).getPrice();
+//                Toast.makeText(MainActivity.this, "The selected Item is " + ((MyApp) getApplication()).storeObject.getInventory().get(i).getDescription(), Toast.LENGTH_LONG).show();
+                prodTypeText.setText(((MyApp) getApplication()).storeObject.getInventory().get(i).getDescription());
+                price = ((MyApp) getApplication()).storeObject.getInventory().get(i).getPrice();
                 index = i;
             }
-
         });
     }
 
@@ -101,16 +98,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.clearBut:
                 quant = "";
-                prod = "";
-                price = 0;
-                prodTypeText.setText(prod);
+                prodTypeText.setText("");
                 quantText.setText(quant);
-                resultText.setText("" + price);
+                resultText.setText("");
                 break;
             case R.id.buyButton:
+                //get product and quantity from layout
+                prod = prodTypeText.getText().toString();
+                quant = quantText.getText().toString();
+                //check if all fields is not empty
+                if (!quant.isEmpty() && !prod.isEmpty()) {
+                    InventoryItem item = new InventoryItem();
+                    double cost = ((MyApp) getApplication()).storeObject.purchase(index, Integer.parseInt(quant));
+                    if (cost != -1) {
+                        resultText.setText("It costs " + cost + "$");
+                    } else {
+                        Toast.makeText(MainActivity.this, "Not enough quantity in the stock! ", Toast.LENGTH_LONG).show();
+                        quant = "";
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "All fields are required! ", Toast.LENGTH_LONG).show();
+                }
+                //update ArrayList in BaseAdapter after purchase
+                adapter.notifyDataSetChanged();
+                //get current purchase and show alert about it
+                HistoryItem currentHistory = ((MyApp) getApplication()).storeObject.getHistory().get(index);
+                showTheAlert(currentHistory);
 
 
-                resultText.setText("It costs " + Store.purchase(index, Integer.parseInt(quant)) + "$");
+                //
+                quant = "";
+                prodTypeText.setText("");
+                quantText.setText(quant);
+                resultText.setText("");
+                //
+
 
                 break;
             case R.id.manager:
@@ -121,5 +143,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 quant += ((Button) view).getText().toString();
                 quantText.setText(quant);
         }
+    }
+
+    void showTheAlert(HistoryItem history) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Thank You for your purchase:" + "\n" + history.getQuantity() + " " + history.getDescription() + " for total amount " + history.getPrice())
+                .setTitle("Congratulations!!");
+        builder.setNegativeButton("OK", null);
+        builder.create().show();
     }
 }
