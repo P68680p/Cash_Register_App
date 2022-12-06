@@ -1,7 +1,8 @@
 package com.example.cash_register_app;
 
 
-import android.app.Application;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -71,4 +72,5 @@ public class Store {
         }
         System.out.println();
     }
+
 }

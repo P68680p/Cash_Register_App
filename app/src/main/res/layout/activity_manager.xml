@@ -8,22 +8,22 @@
     tools:context=".ManagerActivity">
 
     <Button
-        android:id="@+id/historyBut"
+        android:id="@+id/toHistoryBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
-        android:text="History"
+        android:text="@string/history"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@id/restockBut"
+        app:layout_constraintBottom_toTopOf="@id/toRestockBut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/restockBut"
+        android:id="@+id/toRestockBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
-        android:text="Restock"
+        android:text="@string/restock"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

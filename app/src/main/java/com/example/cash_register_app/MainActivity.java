@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("Cash Register App", "Activity Created");
+        Log.d("Cash Register App", "MainActivity Created");
 
         prodTypeText = findViewById(R.id.showProductType);
         quantText = findViewById(R.id.showQuantity);
@@ -122,17 +122,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //update ArrayList in BaseAdapter after purchase
                 adapter.notifyDataSetChanged();
                 //get current purchase and show alert about it
-                HistoryItem currentHistory = ((MyApp) getApplication()).storeObject.getHistory().get(index);
-                showTheAlert(currentHistory);
+                HistoryItem currentHistory = (HistoryItem) ((MyApp) getApplication()).storeObject.getHistory().get(index);
 
-
-                //
                 quant = "";
                 prodTypeText.setText("");
                 quantText.setText(quant);
                 resultText.setText("");
-                //
-
 
                 break;
             case R.id.manager:

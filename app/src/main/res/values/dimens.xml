@@ -2,4 +2,6 @@
 <resources>
     <dimen name="Text15">15sp</dimen>
     <dimen name="Text20">20sp</dimen>
+    <dimen name="textSize20">20sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
