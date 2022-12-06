@@ -16,6 +16,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:circularflow_viewCenter="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/showProductType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +25,6 @@
         android:id="@+id/showProductType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space20sp"
         android:background="@color/teal_700"
         android:gravity="center"
         android:hint="@string/enter_product_type"
@@ -32,7 +32,10 @@
         android:textColorHint="@color/white"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintBottom_toTopOf="@id/showQuantity"/>
 
     <TextView
         android:id="@+id/showQuantity"
@@ -47,7 +50,10 @@
         android:textColorHint="@color/white"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintTop_toBottomOf="@+id/showProductType" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showProductType"
+        app:layout_constraintBottom_toTopOf="@id/showTotalHint"/>
 
     <TextView
         android:id="@+id/showTotalHint"
@@ -62,6 +68,10 @@
         android:textColorHint="@color/white"
         android:textSize="20sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showQuantity" />
 
     <androidx.constraintlayout.widget.Guideline

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -108,10 +107,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 quant = quantText.getText().toString();
                 //check if all fields is not empty
                 if (!quant.isEmpty() && !prod.isEmpty()) {
-                    InventoryItem item = new InventoryItem();
                     double cost = ((MyApp) getApplication()).storeObject.purchase(index, Integer.parseInt(quant));
                     if (cost != -1) {
                         resultText.setText("It costs " + cost + "$");
+                        //get current purchase and show alert about it
+                        HistoryItem currentHistory = (HistoryItem) ((MyApp) getApplication()).storeObject.getHistory().get(index);
+                        showTheAlert(currentHistory);
                     } else {
                         Toast.makeText(MainActivity.this, "Not enough quantity in the stock! ", Toast.LENGTH_LONG).show();
                         quant = "";
@@ -121,15 +122,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 //update ArrayList in BaseAdapter after purchase
                 adapter.notifyDataSetChanged();
-                //get current purchase and show alert about it
-                HistoryItem currentHistory = (HistoryItem) ((MyApp) getApplication()).storeObject.getHistory().get(index);
-
-                quant = "";
-                prodTypeText.setText("");
-                quantText.setText(quant);
-                resultText.setText("");
-
                 break;
+
             case R.id.manager:
                 Intent firstIntent = new Intent(MainActivity.this, ManagerActivity.class);
                 startActivity(firstIntent);
